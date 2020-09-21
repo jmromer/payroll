@@ -1,0 +1,9 @@
+django-extensions==3.0.9
+django-filter==2.3.0
+django-pandas==0.6.2
+django-redis==4.12.1
+djangorestframework==3.11.1
+pandas==1.1.2
+psycopg2==2.8.6
+pytest-django==3.10.0
+pytest==6.0.2
