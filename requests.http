@@ -1,0 +1,199 @@
+# Attempt to persist time-report-43.csv, which has no data.
+#
+POST http://localhost:8000/time-entries/
+Content-Type: text/csv
+Content-Disposition: attachment; filename="time-report-43.csv"
+< fixtures/time-report-43.csv
+# {
+#   "error": "File time-report-43.csv contains no data."
+# }
+# // POST http://localhost:8000/time-entries/
+# // HTTP/1.1 422 Unprocessable Entity
+# // Date: Thu, 24 Sep 2020 01:15:15 GMT
+# // Server: WSGIServer/0.2 CPython/3.8.0
+# // Content-Type: application/json
+# // Vary: Accept, Cookie
+# // Allow: POST, OPTIONS
+# // X-Frame-Options: DENY
+# // Content-Length: 53
+# // X-Content-Type-Options: nosniff
+# // Referrer-Policy: same-origin
+# // Request duration: 0.041069s
+
+
+# Persist time-report-42.csv
+#
+POST http://localhost:8000/time-entries/
+Content-Type: text/csv
+Content-Disposition: attachment; filename="time-report-42.csv"
+< fixtures/time-report-42.csv
+#
+# // POST http://localhost:8000/time-entries/
+# // HTTP/1.1 201 Created
+# // Date: Thu, 24 Sep 2020 01:12:17 GMT
+# // Server: WSGIServer/0.2 CPython/3.8.0
+# // Vary: Accept, Cookie
+# // Allow: POST, OPTIONS
+# // X-Frame-Options: DENY
+# // Content-Length: 0
+# // X-Content-Type-Options: nosniff
+# // Referrer-Policy: same-origin
+# // Request duration: 0.086230s
+
+# Attempt to persist time-report-42.csv a second time
+#
+POST http://localhost:8000/time-entries/
+Content-Type: text/csv
+Content-Disposition: attachment; filename="time-report-42.csv"
+< fixtures/time-report-42.csv
+#
+# {
+#   "error": "Report 42 is already saved."
+# }
+# // POST http://localhost:8000/time-entries/
+# // HTTP/1.1 405 Method Not Allowed
+# // Date: Thu, 24 Sep 2020 01:13:37 GMT
+# // Server: WSGIServer/0.2 CPython/3.8.0
+# // Content-Type: application/json
+# // Vary: Accept, Cookie
+# // Allow: POST, OPTIONS
+# // X-Frame-Options: DENY
+# // Content-Length: 39
+# // X-Content-Type-Options: nosniff
+# // Referrer-Policy: same-origin
+# // Request duration: 0.048415s
+
+# Retrieve a payroll report generated from all existing time report entries
+#
+GET http://localhost:8000/payroll-report/
+#
+# {
+#   "payrollReport": {
+#     "employeeReports": [
+#       {
+#         "employeeId": 1,
+#         "amountPaid": "$150.00",
+#         "payPeriod": {
+#           "startDate": "2016-11-01",
+#           "endDate": "2016-11-15"
+#         }
+#       },
+#       {
+#         "employeeId": 1,
+#         "amountPaid": "$445.00",
+#         "payPeriod": {
+#           "startDate": "2016-11-16",
+#           "endDate": "2016-11-30"
+#         }
+#       },
+#       {
+#         "employeeId": 1,
+#         "amountPaid": "$150.00",
+#         "payPeriod": {
+#           "startDate": "2016-12-01",
+#           "endDate": "2016-12-15"
+#         }
+#       },
+#       {
+#         "employeeId": 1,
+#         "amountPaid": "$220.00",
+#         "payPeriod": {
+#           "startDate": "2016-12-16",
+#           "endDate": "2016-12-31"
+#         }
+#       },
+#       {
+#         "employeeId": 2,
+#         "amountPaid": "$930.00",
+#         "payPeriod": {
+#           "startDate": "2016-11-01",
+#           "endDate": "2016-11-15"
+#         }
+#       },
+#       {
+#         "employeeId": 2,
+#         "amountPaid": "$930.00",
+#         "payPeriod": {
+#           "startDate": "2016-12-01",
+#           "endDate": "2016-12-15"
+#         }
+#       },
+#       {
+#         "employeeId": 3,
+#         "amountPaid": "$590.00",
+#         "payPeriod": {
+#           "startDate": "2016-11-01",
+#           "endDate": "2016-11-15"
+#         }
+#       },
+#       {
+#         "employeeId": 3,
+#         "amountPaid": "$470.00",
+#         "payPeriod": {
+#           "startDate": "2016-12-01",
+#           "endDate": "2016-12-15"
+#         }
+#       },
+#       {
+#         "employeeId": 4,
+#         "amountPaid": "$100.00",
+#         "payPeriod": {
+#           "startDate": "2015-02-16",
+#           "endDate": "2015-02-28"
+#         }
+#       },
+#       {
+#         "employeeId": 4,
+#         "amountPaid": "$150.00",
+#         "payPeriod": {
+#           "startDate": "2016-02-16",
+#           "endDate": "2016-02-29"
+#         }
+#       },
+#       {
+#         "employeeId": 4,
+#         "amountPaid": "$150.00",
+#         "payPeriod": {
+#           "startDate": "2016-11-01",
+#           "endDate": "2016-11-15"
+#         }
+#       },
+#       {
+#         "employeeId": 4,
+#         "amountPaid": "$450.00",
+#         "payPeriod": {
+#           "startDate": "2016-11-16",
+#           "endDate": "2016-11-30"
+#         }
+#       },
+#       {
+#         "employeeId": 4,
+#         "amountPaid": "$150.00",
+#         "payPeriod": {
+#           "startDate": "2016-12-01",
+#           "endDate": "2016-12-15"
+#         }
+#       },
+#       {
+#         "employeeId": 4,
+#         "amountPaid": "$450.00",
+#         "payPeriod": {
+#           "startDate": "2016-12-16",
+#           "endDate": "2016-12-31"
+#         }
+#       }
+#     ]
+#   }
+# }
+# // GET http://localhost:8000/payroll-report/
+# // HTTP/1.1 200 OK
+# // Date: Thu, 24 Sep 2020 01:12:31 GMT
+# // Server: WSGIServer/0.2 CPython/3.8.0
+# // Content-Type: application/json
+# // Vary: Accept, Cookie
+# // Allow: GET, HEAD, OPTIONS
+# // X-Frame-Options: DENY
+# // Content-Length: 1467
+# // X-Content-Type-Options: nosniff
+# // Referrer-Policy: same-origin
+# // Request duration: 0.037070s
