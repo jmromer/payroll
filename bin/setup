@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -ex
+
+createdb payroll_dev
+
+./manage.py migrate
+
+./manage.py db_seed
